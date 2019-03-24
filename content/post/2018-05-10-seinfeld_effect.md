@@ -988,22 +988,13 @@ timeline_name('Hannah')
 
 <p>In an episode of <a href="http://www.imdb.com/title/tt0697774/">Seinfeld</a> George mentions to his friends that should he ever have a kid, he'd name him (or her) Seven, after the jersey number of Yankee baseball player Mickey Mantle.</p>
 
-
-```python
-from IPython.display import YouTubeVideo
-YouTubeVideo("NRUdaWZ4FN0")
-```
-
-        <iframe
-            width="400"
-            height="300"
-            src="https://www.youtube.com/embed/NRUdaWZ4FN0"
-            frameborder="0"
-            allowfullscreen
+<iframe
+        width="400"
+        height="300"
+        src="https://www.youtube.com/embed/NRUdaWZ4FN0"
+        frameborder="0"
+        allowfullscreen
         ></iframe>
-        
-
-
 
 First, let's check whether "Seven" is in our data set.
 
