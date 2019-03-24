@@ -32,7 +32,7 @@ while with group2 you sometimes use interpretive dance instead of equations to e
 <img src="https://media.giphy.com/media/xT1XGXgtj8PWdvCLFS/giphy.gif" width="400">
 </div>
 
-Let's jump right in.
+<p>Let's jump right in.</p>
 
 
 ```python
@@ -107,7 +107,7 @@ plt.yticks(fontsize=14)
 plt.show()
 ```
 
-![png](output_9_0.png)
+![png](output_8_0.png)
 
 
 ##### Is this difference in means statistically significant (i.e., should you drop the interpretive dance routine)?
@@ -198,7 +198,7 @@ plt.yticks(fontsize=14)
 plt.show()
 ```
 
-![png](output_18_0.png)
+![png](output_17_0.png)
 
 
 On the histogram, we see that the observed difference is quite far from the mode of the distribution.
