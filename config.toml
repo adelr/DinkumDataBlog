@@ -1,4 +1,4 @@
-baseurl = "https://www.example.com"
+baseurl = "https://adelr.github.io/"
 DefaultContentLanguage = "en"
 # DefaultContentLanguage = "py"
 title = "Dinkum Data Blog"
@@ -8,6 +8,8 @@ pygmentsStyle = "trac"
 pygmentsUseClasses = true
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
+publishDir = "adelr.github.io"
+
 #pygmentsUseClassic = true
 #pygmentOptions = "linenos=inline"
 #disqusShortname = "XXX"
