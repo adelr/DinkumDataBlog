@@ -20,7 +20,7 @@ publishDir = "adelr.github.io"
 
 [Params]
 #  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
-  subtitle = "A crack at some dinky-di, bonzer data"
+  subtitle = "A crack at some dinky-di, bonzer data science"
   logo = "img/avatar-icon.png" # Expecting square dimensions
 #   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
