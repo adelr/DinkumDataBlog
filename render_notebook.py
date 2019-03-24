@@ -133,7 +133,7 @@ if __name__ == "__main__":
 
     try:
         with open(yaml_path, 'r') as ymlfile:
-            cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+            cfg = yaml.load(ymlfile)
     except Exception as e:
         print(f"Cannot load {yaml_path}", e)
 

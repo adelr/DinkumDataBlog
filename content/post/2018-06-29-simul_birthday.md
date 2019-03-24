@@ -606,13 +606,12 @@ For more information I'll refer you to [this paper by Fisher, Funk, and Sams](ht
 
 We can nonetheless compare our simulation to the authors' exact result for the 50% threshold for the values of M they used:
 
-| M              | 2  | 3  | 4   | 5   | 6   | 7   |
-|----------------|----|----|-----|-----|-----------|
-| exact          | 23 | 88 | 187 | 313 | N/A | N/A |
-| our simulation | 23 | 87 | 188 | 314 | 457 | 616 |
+    | M              | 2  | 3  | 4   | 5   | 6   | 7   |
+    |----------------|----|----|-----|-----|-----------|
+    | exact          | 23 | 88 | 187 | 313 | N/A | N/A |
+    | our simulation | 23 | 87 | 188 | 314 | 457 | 616 |
 
-
-We're in the right ball bark. We could probably improve our results a bit by using more than 1000 trials.
+We're in the right ball park. We could probably improve our results a bit by using more than 1000 trials.
 
 It might also be interesting to record the variance across the trials during our simulation.
 
