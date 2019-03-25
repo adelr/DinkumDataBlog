@@ -12,7 +12,7 @@ tags:
   - probability
   - statistics
   - seinfeld
-summary : A basic example of simulation
+summary : Comparison between two groups. A simulation.
 thumbnailImagePosition : left
 thumbnailImage : ./static/img/avatar-icon.png
 ---
