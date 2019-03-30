@@ -3,7 +3,7 @@ date : 2018-05-10
 slug : seinfeld_effect
 mathjax : ture
 title : Seinfeld's Magnificent Seven
-author : Adel
+author : Adel Rahmani
 categories: 
   - Python
   - blogging

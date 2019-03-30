@@ -3,7 +3,7 @@ date : 2018-11-15
 slug : pandas_groupby
 mathjax : ture
 title : Pandas (Blood)groupby
-author : Adel
+author : Adel Rahmani
 categories: 
   - Python
   - blogging

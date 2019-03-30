@@ -3,7 +3,7 @@ date : 2018-06-29
 slug : simul_birthday
 mathjax : ture
 title : Happy birthday to you!
-author : Adel
+author : Adel Rahmani
 categories: 
   - Python
   - blogging

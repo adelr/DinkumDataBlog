@@ -3,7 +3,7 @@ date : 2018-06-15
 slug : simul_coin_flip
 mathjax : ture
 title : Do you feel lucky?
-author : Adel
+author : Adel Rahmani
 categories: 
   - Python
   - blogging

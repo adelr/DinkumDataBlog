@@ -138,7 +138,7 @@ if __name__ == "__main__":
                             date = cfg['date'],
                             slug = cfg['slug'],
                             title = cfg['title'],
-                            author = 'Adel',
+                            author = 'Adel Rahmani',
                             categories = ['Python','blogging'],
                             tags = cfg['tags'],
                             summary = cfg['summary'],
