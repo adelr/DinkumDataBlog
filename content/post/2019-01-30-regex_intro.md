@@ -3,7 +3,7 @@ date : 2019-01-30
 slug : regex_intro
 mathjax : ture
 title : Introduction to regular expressions
-author : Adel Rahmani
+author : Adel
 categories: 
   - Python
   - blogging

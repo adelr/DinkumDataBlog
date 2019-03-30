@@ -3,7 +3,7 @@ date : 2018-08-29
 slug : simul_t_test
 mathjax : ture
 title : That ain't dancing Sally!
-author : Adel Rahmani
+author : Adel
 categories: 
   - Python
   - blogging

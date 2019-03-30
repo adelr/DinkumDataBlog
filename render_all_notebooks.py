@@ -120,31 +120,30 @@ def notebook_to_markdown( path, date, slug, **kwargs ):
             with (path_out / key).open('wb') as f:
                 f.write( resources['outputs'][key] )
 
-
-
 if __name__ == "__main__":
-
-    nb_path = sys.argv[1]
 
     src_dir = Path(f'./notebooks')
 
-    path = src_dir/f"{nb_path}.ipynb"
-    yaml_path = src_dir/f"{nb_path}.yml"
+    for f in src_dir.glob('*.ipynb'):
+        fname = f.stem
+        path = f
+        yaml_path = src_dir/f"{fname}.yml"
 
-    try:
-        with open(yaml_path, 'r') as ymlfile:
-            cfg = yaml.load(ymlfile)
-    except Exception as e:
-        print(f"Cannot load {yaml_path}", e)
+        try:
+            with open(yaml_path, 'r') as ymlfile:
+                cfg = yaml.load(ymlfile)
+                print(f'processing {fname}.ipynb...')
 
-    notebook_to_markdown(path = path,
-                         date = cfg['date'],
-                         slug = cfg['slug'],
-                         title = cfg['title'],
-                         author = 'Adel',
-                         categories = ['Python','blogging'],
-                         tags = cfg['tags'],
-                         summary = cfg['summary'],
-                         thumbnailImagePosition = 'left',
-                         thumbnailImage = './static/img/avatar-icon.png'
-                         )
+            notebook_to_markdown(path = path,
+                            date = cfg['date'],
+                            slug = cfg['slug'],
+                            title = cfg['title'],
+                            author = 'Adel',
+                            categories = ['Python','blogging'],
+                            tags = cfg['tags'],
+                            summary = cfg['summary'],
+                            thumbnailImagePosition = 'left',
+                            thumbnailImage = './static/img/avatar-icon.png'
+                            )
+        except Exception as e:
+            print(f"Cannot load {yaml_path}", e)

@@ -3,7 +3,7 @@ date : 2018-10-05
 slug : unicode_intro
 mathjax : ture
 title : Unicode strings in Python
-author : Adel Rahmani
+author : Adel
 categories: 
   - Python
   - blogging
