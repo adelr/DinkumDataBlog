@@ -12,7 +12,7 @@ tags:
   - sql
   - r
   - data wrangling
-summary : SQL vs Python vs R.
+summary : SQL vs Python vs R - Un pour tous, tous pour un!
 thumbnailImagePosition : left
 thumbnailImage : ./static/img/avatar-icon.png
 ---
