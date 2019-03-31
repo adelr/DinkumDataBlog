@@ -1,3 +1,0 @@
-python render_notebook.py Notebook.py
-hugo
-git add . && git commit -m "update content" && git push && cd adelr.github.io/ && git add . && git commit -m "update content" && git push && cd ..
