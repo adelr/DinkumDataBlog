@@ -484,7 +484,7 @@ Let's look at a query where we need to extract a feature that doesn't appear exp
 
 ---
 
-### Which transactions occured in the month of March only (irrespective of the year)?
+### Which transactions occured in the month of March only?
 
 The `payment` table has a `payment_date` feature from which we will need to extract the month.
 
@@ -1260,7 +1260,7 @@ df_r
 
 ### How much did each customer spend and when?
 
-There are a number of ways to answer this question. To look at a different way of aggregating the data we will return the collection of transaction dates for each customer. In SQL we can do that with an array.
+We can answer this question in a number of ways. Let's return a sequence of transaction dates for each customer. In SQL we can do that with an array.
 
 #### ▶ SQL
 
@@ -5622,4 +5622,18 @@ as.data.frame(df_r)
 
 
 
-To be continued...
+---
+
+Hopefully, the examples above show that a significant part of the syntax used to wrangle structured data (data arranged in tables), in both Python (pandas) and R (tidyverse), has been influenced by SQL. 
+
+Many of the pipelines we built are comprised of the same steps as the corresponding SQL query. This is especially true for basic queries where we do
+simple things like group by columns or build a simple aggregate measure. 
+Similarly, syntactic differences aside, joining operations work in a comparable way across the three languages.
+
+As we consider more complex operations, however, a direct port of the SQL querie to the other languages may not be the most optimal way.
+We saw a small example of this when we computed which days in March had no rentals. 
+The good news, however, is that these languages aren't mutually exclusive. After all, we did run all our SQL via Python (pandas).
+Rather these languages complement each other and can be used in conjunction to build pipelines that can perform complex manipulation of the data in an 
+efficient way. 
+
+To steal a line from  Alexandre Dumas' The Three Musketeers, this is truly a case of _All for one and one for all_!
