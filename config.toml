@@ -13,7 +13,7 @@ publishDir = "adelr.github.io"
 #pygmentsUseClassic = true
 #pygmentOptions = "linenos=inline"
 #disqusShortname = "XXX"
-#googleAnalytics = "XXX"
+googleAnalytics = "UA-96102728-1"
 
 [permalinks]
     post = "/:year/:month/:slug/"
