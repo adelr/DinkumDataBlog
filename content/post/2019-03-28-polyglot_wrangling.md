@@ -11,6 +11,8 @@ tags:
   - python
   - sql
   - r
+  - pandas
+  - tidyverse
   - data wrangling
 summary : SQL vs Python vs R - Tous pour un, un pour tous!
 thumbnailImagePosition : left
