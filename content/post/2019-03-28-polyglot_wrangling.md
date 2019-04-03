@@ -66,7 +66,7 @@ display(HTML("<style>.container { width:100% !important; }</style>"))
 
 All our R code will be preceded by `%%R` command to run it on the R interpreter from within our Jupyter notebook.
 We start by loading the [tidyverse](https://www.tidyverse.org/) library (which is in fact a collection of libraries),
-and setting an option to make controlling how some outputs are rendered.
+and setting an option to improve how some outputs are rendered in the notebook.
 
 
 ```r
