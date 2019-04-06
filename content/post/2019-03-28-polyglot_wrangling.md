@@ -777,7 +777,7 @@ the first few rows are consistent.
 
 
 ```python
-all(df==df_sql), all(df.iloc[:, :-1]==df_r.reset_index(drop=True).iloc[:, :-1])
+all(df==df_sql), all(df.iloc[:, :-1]==df_r.iloc[:, :-1])
 ```
 
     (True, True)
@@ -1556,7 +1556,7 @@ We could do something similar in Python, however let's try a more pythonic appro
 
 ```python
 gs = pd.date_range(start='20070301', end='20070331', freq='D')
-df = pd.DataFrame(index = set(gs.date) - set(payment.payment_date.dt.date.values))
+df = pd.DataFrame(index = set(gs.date) - set(payment.payment_date.dt.date.values)).sort_index()
 print(df.shape)
 df
 ```
@@ -1587,52 +1587,13 @@ df
   </thead>
   <tbody>
     <tr>
-      <th>2007-03-28</th>
-    </tr>
-    <tr>
-      <th>2007-03-30</th>
-    </tr>
-    <tr>
-      <th>2007-03-26</th>
-    </tr>
-    <tr>
-      <th>2007-03-13</th>
-    </tr>
-    <tr>
-      <th>2007-03-10</th>
-    </tr>
-    <tr>
-      <th>2007-03-15</th>
-    </tr>
-    <tr>
-      <th>2007-03-08</th>
-    </tr>
-    <tr>
-      <th>2007-03-09</th>
-    </tr>
-    <tr>
-      <th>2007-03-24</th>
-    </tr>
-    <tr>
       <th>2007-03-03</th>
     </tr>
     <tr>
-      <th>2007-03-12</th>
+      <th>2007-03-04</th>
     </tr>
     <tr>
       <th>2007-03-05</th>
-    </tr>
-    <tr>
-      <th>2007-03-27</th>
-    </tr>
-    <tr>
-      <th>2007-03-25</th>
-    </tr>
-    <tr>
-      <th>2007-03-29</th>
-    </tr>
-    <tr>
-      <th>2007-03-31</th>
     </tr>
     <tr>
       <th>2007-03-06</th>
@@ -1641,13 +1602,52 @@ df
       <th>2007-03-07</th>
     </tr>
     <tr>
+      <th>2007-03-08</th>
+    </tr>
+    <tr>
+      <th>2007-03-09</th>
+    </tr>
+    <tr>
+      <th>2007-03-10</th>
+    </tr>
+    <tr>
       <th>2007-03-11</th>
     </tr>
     <tr>
-      <th>2007-03-04</th>
+      <th>2007-03-12</th>
+    </tr>
+    <tr>
+      <th>2007-03-13</th>
     </tr>
     <tr>
       <th>2007-03-14</th>
+    </tr>
+    <tr>
+      <th>2007-03-15</th>
+    </tr>
+    <tr>
+      <th>2007-03-24</th>
+    </tr>
+    <tr>
+      <th>2007-03-25</th>
+    </tr>
+    <tr>
+      <th>2007-03-26</th>
+    </tr>
+    <tr>
+      <th>2007-03-27</th>
+    </tr>
+    <tr>
+      <th>2007-03-28</th>
+    </tr>
+    <tr>
+      <th>2007-03-29</th>
+    </tr>
+    <tr>
+      <th>2007-03-30</th>
+    </tr>
+    <tr>
+      <th>2007-03-31</th>
     </tr>
   </tbody>
 </table>
@@ -1663,7 +1663,7 @@ We could flatten the nested list but it would only obfuscate the code so we'll l
 ```r
 %%R
 gs = seq(lubridate::ymd('2007-03-01'), lubridate::ymd('2007-03-31'), by = '1 day')
-lapply(setdiff(gs, lubridate::date(payment$payment_date)), as.Date, origin='1970-01-01')
+lapply(sort(setdiff(gs, lubridate::date(payment$payment_date))), as.Date, origin='1970-01-01')
 ```
 
     [[1]]
@@ -2165,7 +2165,7 @@ Once again, the pattern for R follows the same principles.
 
 
 ```r
-%%R -o df_r
+%%R 
 gs = data_frame(payment_date=seq(lubridate::ymd('2007-03-01'), 
                                  lubridate::ymd('2007-03-31'), 
                                  by = '1 day'))
@@ -5636,6 +5636,6 @@ As we consider more complex operations, however, a direct port of the SQL querie
 We saw a small example of this when we computed which days in March had no rentals. 
 The good news, however, is that these languages aren't mutually exclusive. After all, we did run all our SQL via Python (pandas).
 Rather these languages complement each other and can be used in conjunction to build pipelines that can perform complex manipulation of the data in an 
-efficient way. 
+efficient way. Very often, SQL is used to first extract a subset of the data from a large database, which can then be manipulated and transformed further in Python or R.
 
 To steal a line from  Alexandre Dumas' The Three Musketeers, this is truly a case of _All for one and one for all_!
