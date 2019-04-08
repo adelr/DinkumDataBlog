@@ -5402,7 +5402,7 @@ film %>%
 
 #### ▶ SQL
 The grouping by rating part is straightforward, however, we want the _top performing movie_ within each group.
-We can use a window function (the `PARTITION BY` part) to do this.
+We can use a window function (the `OVER` part) to do this.
 
 
 ```python
