@@ -48,7 +48,9 @@ display(HTML("<style>.container { width:100% !important; }</style>"))
 
 <h3> <center><font color=MediumVioletRed>A. Loading the data</font></center></h3>
 
-The dataset can be downloaded from http://www.ssa.gov/oact/babynames/limits.html. (Follow the link and download the dataset
+The dataset can be downloaded from http://www.ssa.gov/oact/babynames/limits.html. 
+
+(Follow the link and download the dataset
 in the datasets directory, in a directory called names, and unzip it).
 
 The dataset contains the top 1000 most popular names starting in 1880.
@@ -169,7 +171,7 @@ for file, year in zip(files, years):
     df['year'] = year
     L.append(df)
     
-names = pd.concat(L, ignore_index=True)    
+names = pd.concat(L)    
 names.head()
 ```
 
@@ -261,11 +263,12 @@ The `year` feature is of type `object` which is Python's way of telling us it's 
 We'd like it to be a `datetime` type so let's fix that.
 
 Pandas has [several features](http://pandas.pydata.org/pandas-docs/stable/timeseries.html) that make manipulating date and timestamp objects easy.
+
 (We'll also change the type of `sex` to category while we're at it)
 
 
 ```python
-names['year'] = pd.to_datetime(names['year'], format="%Y")
+names['year'] = pd.to_datetime(names['year'])
 names['sex'] = names.sex.astype('category')
 ```
 
@@ -397,15 +400,15 @@ names.sex.value_counts(normalize=True).apply(lambda x: f'{x*100:.0f}%')
 
 
 
-#### Let's find the total number of births _for each year, for both genders_.
+#### Let's find the total number of births for each year, for both sexes.
 
 
 ```python
-total_births_per_year_per_gender = names.pivot_table('births', index='year', columns='sex', aggfunc=sum)
+total_births_per_year_per_sex = names.pivot_table('births', index='year', columns='sex', aggfunc=sum)
 ```
 
 ```python
-total_births_per_year_per_gender.head()
+total_births_per_year_per_sex.head()
 ```
 
 <div>
@@ -534,8 +537,11 @@ names.groupby(['year', 'sex']).births.sum().unstack().head()
 
 
 ```python
-total_births_per_year_per_gender.plot(figsize=(12, 6), title="Total births by sex and year", 
-                                      lw=3, color=('r', 'g'), alpha=0.5);
+total_births_per_year_per_sex.plot(figsize=(12, 6), 
+                                   title="Total births by sex and year", 
+                                   lw=3, 
+                                   color=('r', 'g'), 
+                                   alpha=0.5);
 ```
 
 ![png](output_27_0.png)
@@ -611,7 +617,7 @@ print(" | ".join(list(both)[:100]))
     
      Here's a sample:
     
-    Sylas | Hadley | Rene | Clester | Ilia | Kahlen | Araceli | Romayne | Alvia | Tasean | Aj | Marchand | Million | Lugene | Coley | Loel | Jasiya | Altie | Donnelle | Caziah | Ace | Darrel | Bond | Glenda | Hany | Madden | Maisyn | Pam | Harjap | Elizabeth | Javae | Mccrae | Alondra | Azaiah | Elysium | Daron | Orval | Tobie | Demeatrice | Carlos | Doug | Tommy | Emmanuel | Dana | Lucille | Schuyler | Briley | Penny | Page | Jamy | Stav | Honest | Koree | Anael | Reilley | Dot | Madeleine | Tyne | Kimbrell | Tyme | Mariam | Kensley | Binnie | Aryan | Constance | Farrin | Jadyne | Nihaal | Odie | Rayaan | Quay | Iesha | Ople | Javen | Jaylyn | Rox | Emani | Murphey | Itzel | Mio | Asa | Hau | Alfie | Mardie | Brianne | Wan | Dani | Misael | Rylynn | Elda | Chantelle | Mizan | Oluwadamilola | Jontue | Rick | Teegan | Emersyn | Zamarii | Oluwatomisin | Haddon
+    Ovis | Honor | Honore | Brandyn | Dorcus | Michel | Million | Donavan | Kemonie | Alie | Shalom | Sagan | Maeson | Kharis | Tenny | Daron | Madeline | Torey | Dandy | Nasir | Lavorn | Tracey | Ali | Kanya | Huey | Hershel | Kiren | Unnamed | Mose | Dakari | Navid | Krystian | Koi | Giavonni | Justine | Kamar | Derrell | Rajdeep | Leyton | Mong | Seattle | Vader | Anias | Camaree | Zimri | Khamauri | Jireh | Choyce | Cleo | Marki | Keontay | Shakari | Amarie | Jrue | Refugia | Luster | Levorn | Dillon | Joie | Dalas | Son | Graham | Samie | Larson | Kylynn | Kearney | Dejah | Teegan | Jahzel | Brunell | Delijah | Asiyah | Taelin | Rafa | Edward | Essie | Kenzie | Kwan | Honour | Britney | Shirl | Dara | Berthal | Keymoni | Madelyn | Dorey | Trinell | Maury | Skyylar | Courtnay | Lyncoln | Modie | Octavious | Jaice | Snow | Domique | Eva | Jeremy | Kobee | Sae
 
 
 <p>Upon a more careful examination of the whole output, some interesting observations can be made.</p>
@@ -657,28 +663,28 @@ names[names.name == 'Lucille'].head()
       <td>1880-01-01</td>
     </tr>
     <tr>
-      <th>2223</th>
+      <th>223</th>
       <td>Lucille</td>
       <td>F</td>
       <td>48</td>
       <td>1881-01-01</td>
     </tr>
     <tr>
-      <th>4105</th>
+      <th>170</th>
       <td>Lucille</td>
       <td>F</td>
       <td>85</td>
       <td>1882-01-01</td>
     </tr>
     <tr>
-      <th>6282</th>
+      <th>220</th>
       <td>Lucille</td>
       <td>F</td>
       <td>66</td>
       <td>1883-01-01</td>
     </tr>
     <tr>
-      <th>8334</th>
+      <th>188</th>
       <td>Lucille</td>
       <td>F</td>
       <td>94</td>
@@ -936,14 +942,18 @@ We can daisy chain the name selection and the plotting.
 
 
 ```python
-names[names.name == 'Christina'].pivot_table('births', index='year', 
-                                             columns='sex', 
-                                             fill_value=0, 
-                                             aggfunc=np.sum ).plot(figsize=(12, 6),
-                                                                   logy=True, marker='o', lw=0,
-                                                                   color=('r', 'g'), 
-                                                                   title='Christina',
-                                                                   alpha=0.5);
+(names[names.name == 'Christina']
+ .pivot_table('births', 
+              index='year', 
+              columns='sex', 
+              fill_value=0, 
+              aggfunc='sum')
+ .plot(figsize=(12, 6),
+       logy=True, marker='o', lw=0,
+       color=('r', 'g'), 
+       title='Christina',
+       alpha=0.5)
+);
 ```
 
 ![png](output_51_0.png)
@@ -953,16 +963,23 @@ names[names.name == 'Christina'].pivot_table('births', index='year',
 
 
 ```python
-def timeline_name(name='Basil'):
-    names[names.name == name].pivot_table('births', 
-                                          index='year', 
-                                          columns='sex', 
-                                          fill_value=0, 
-                                          aggfunc=np.sum ).plot(figsize=(12, 6),
-                                                                logy=True, marker='o', lw=0,
-                                                                color=('r', 'g'), 
-                                                                title=name,
-                                                                alpha=0.5)
+def timeline_name(name='Basil', use_log=True):
+    ax = (names[names.name == name]
+            .pivot_table('births', 
+                         index='year', 
+                         columns='sex', 
+                         fill_value=0, 
+                         aggfunc=np.sum)
+            .plot(figsize=(10, 6),
+                  logy=use_log, 
+                  marker='o', 
+                  lw=1,
+                  color=('r', 'g'), 
+                  alpha=0.5)
+    )
+    ax.set_xlabel('year', fontsize=14)
+    ax.set_ylabel('count', fontsize=14)
+    ax.set_title(name, fontsize=16)
 ```
 
 ```python
@@ -1019,21 +1036,24 @@ First let's create a date range over which to plot the data.
 ```python
 seinfeldYear = '1996'
 start = '1991'
-end   = '2017'
+end   = '2018'
 
-# Let's create a range of dates from start to end containing every other year
-date_range   = pd.date_range(start, end, freq='2A')
+# Let's create a range of dates from start to end.
+date_range = pd.date_range(start, end, freq='A-JAN')
 ```
 
 ```python
 date_range
 ```
 
-    DatetimeIndex(['1991-12-31', '1993-12-31', '1995-12-31', '1997-12-31',
-                   '1999-12-31', '2001-12-31', '2003-12-31', '2005-12-31',
-                   '2007-12-31', '2009-12-31', '2011-12-31', '2013-12-31',
-                   '2015-12-31'],
-                  dtype='datetime64[ns]', freq='2A-DEC')
+    DatetimeIndex(['1991-01-31', '1992-01-31', '1993-01-31', '1994-01-31',
+                   '1995-01-31', '1996-01-31', '1997-01-31', '1998-01-31',
+                   '1999-01-31', '2000-01-31', '2001-01-31', '2002-01-31',
+                   '2003-01-31', '2004-01-31', '2005-01-31', '2006-01-31',
+                   '2007-01-31', '2008-01-31', '2009-01-31', '2010-01-31',
+                   '2011-01-31', '2012-01-31', '2013-01-31', '2014-01-31',
+                   '2015-01-31', '2016-01-31', '2017-01-31'],
+                  dtype='datetime64[ns]', freq='A-JAN')
 
 
 
@@ -1041,17 +1061,17 @@ Let's visualise the trend for "Seven".
 
 
 ```python
-fig = plt.figure()
-
 # The data
-data = names[names.name == 'Seven'].pivot_table('births', 
-                                                index='year', 
-                                                columns='sex', 
-                                                fill_value=0, 
-                                                aggfunc=np.sum)
+data = (names[names.name == 'Seven']
+            .pivot_table('births', 
+                         index='year', 
+                         columns='sex', 
+                         fill_value=0, 
+                         aggfunc=np.sum)
+       )
 
 # The base plot
-ax = data.plot(figsize=(12, 6), 
+ax = data.plot(figsize=(12, 8), 
           logy=False, 
           marker='o', 
           color=('r', 'g'), 
@@ -1065,22 +1085,20 @@ ax.set_xticks(date_range)
 ax.set_xlim([start, end])
 
 # Ensure that the labels on the x axis match the years.
-ax.set_xticklabels(date_range.year+1, rotation=0, ha='center' )
+ax.set_xticklabels(date_range.year, rotation=0, ha='center' )
 
 # Annotate the figure with some text by specifying location using xy parameter
 ax.annotate('Episode "The Seven" is aired', 
             xy=(pd.to_datetime(seinfeldYear, format="%Y"), 100),
+            xycoords='data',
             rotation=90,
             horizontalalignment='center'
             )
+
 plt.show()
 ```
 
-    <Figure size 432x288 with 0 Axes>
-
-
-
-![png](output_64_1.png)
+![png](output_64_0.png)
 
 
 <p>Note that this <em>does not prove</em> that the show "created" the name fad (correlation &#8800; causation and all that; there could be another reason behind both the increase in popularity of the name, and the use of the name in the show), but it does seem to indicate that it enhanced it...</p> 
@@ -1094,20 +1112,31 @@ Let's create a general function that we can use to plot various trends.
 
 
 ```python
-def plot_name_event(data = names, name="Seven", year='1996', start='1968', end='2013', 
-                  event_type = 'movie', event_title = ''):    
+def plot_name_event(data = names, name="Seven",
+                    year='1996', start='1968', end='2013', 
+                    event = '', freq='A-JAN'):    
     
-    date_range   = pd.date_range(start, end, freq='A-JAN')
+    date_range   = pd.date_range(start, end, freq=freq)
     
-    data = names[names.name == name].pivot_table('births', index='year', columns='sex', fill_value=0, aggfunc=np.sum)
-
-    ax = data.plot(figsize=(12, 6), logy=False, marker='o', color=('r', 'g'), alpha=0.5, 
-              title = f"Name: {name} | The {event_type} {event_title} was released in {year}", 
+    data = (names[names.name == name]
+            .pivot_table('births', 
+                         index='year', 
+                         columns='sex', 
+                         fill_value=0, 
+                         aggfunc='sum')
+           )
+    ax = data.plot(figsize=(14, 6), 
+                   logy=False, 
+                   marker='o', 
+                   color=('r', 'g'), 
+                   alpha=0.5, 
+                   title = f"Name: {name} | {event} in {year}", 
                    grid=False)
     
     ax.axvline(year, ymin=0, ymax=data.max().max(), lw=15, color='orange', alpha=0.5)
     ax.set_xticks(date_range)
     ax.set_xlim([start, end])
+    ax.set_ylim([0, data.loc[data.index <= date_range[-1]].max().max()*1.1])
 
     ax.set_xticklabels(date_range.year, rotation=90, ha='center' )
     plt.show()
@@ -1118,7 +1147,7 @@ def plot_name_event(data = names, name="Seven", year='1996', start='1968', end='
 
 ```python
 plot_name_event(name="Neo", year='1999', start='1990', 
-                event_type="The movie The Matrix was released")
+                event='The movie The Matrix is released')
 ```
 
 ![png](output_69_0.png)
@@ -1126,8 +1155,8 @@ plot_name_event(name="Neo", year='1999', start='1990',
 
 
 ```python
-plot_name_event(name="Denzel", year='1989', start='1985', 
-                event_type="The movie Glory was released")
+plot_name_event(name="Trinity", year='1999', start='1990', 
+                event='The movie The Matrix is released')
 ```
 
 ![png](output_70_0.png)
@@ -1140,10 +1169,32 @@ Errol Flynn got his big break in Captain Blood back in 1935. Let's see if all th
 
 ```python
 plot_name_event(name="Errol",  year='1935', start='1931', end='1961', 
-                event_type="The movie Captain Blood was released")
+                event='The movie Captain Blood is released')
 ```
 
 ![png](output_72_0.png)
+
+
+#### Another possible Hollywood influence around the same time.
+
+
+```python
+plot_name_event(name="Hedy",  year='1938', start='1915', end='1971', 
+                event="The actress Hedy Lamarr made her Hollywood debut")
+```
+
+![png](output_74_0.png)
+
+
+#### Earlier still
+
+
+```python
+plot_name_event(name="Greta",  year='1925', start='1910', end='1981', 
+                event="The actress Greta Garbo made her Hollywood debut")
+```
+
+![png](output_76_0.png)
 
 
 Of course, we can't talk about movies without talking about Star Wars.
@@ -1152,32 +1203,32 @@ Let's see if we can track the names of some of the characters.
 
 
 ```python
+plot_name_event(name="Leia",  year='1977', start='1970', end='1995', 
+                event='The movie Star Wars is released')
+```
+
+![png](output_78_0.png)
+
+
+
+```python
 plot_name_event(name="Han",  year='1977', start='1970', end='2015', 
-                event_type="The movie Star Wars was released")
+                event='The movie Star Wars is released')
 ```
 
-![png](output_74_0.png)
+![png](output_79_0.png)
 
 
 
 ```python
-plot_name_event(name="Leia",  year='1977', start='1970', end='2015', 
-                event_type="The movie Star Wars was released")
+plot_name_event(name="Lando",  year='1977', start='1970', end='2015', 
+                event='The movie Star Wars is released')
 ```
 
-![png](output_75_0.png)
+![png](output_80_0.png)
 
 
-
-```python
-plot_name_event(name="Lando",  year='1980', start='1970', end='2015', 
-                event_type="The movie The Empire Strikes Back was released")
-```
-
-![png](output_76_0.png)
-
-
-Hmmmm... Quite a sharp decline shortly after the movie release.
+Hmmmm... A bit surprising.
 
 What about other characters from the trilogy?
 
@@ -1185,14 +1236,12 @@ Fortunately (for the kids) there doesn't seem to be any Jabba or Jar Jar in our 
 
 
 ```python
-characters = ["Jabba", "Yoda", "Chewbacca", "Jar Jar"]
+characters = {"jabba", "yoda", "chewbacca", "jar jar"}
 
-names_unique = names.name.unique()
-
-any([c in names_unique for c in characters])
+set(names.name.str.lower().unique()) & characters
 ```
 
-    False
+    set()
 
 
 
@@ -1201,10 +1250,10 @@ Let's look at the main character of another popular movie series.
 
 ```python
 plot_name_event(name="Indiana",  year='1981', start='1970', end='2015', 
-                event_type="The movie Raiders Of The Lost Ark was released")
+                event="The movie Raiders Of The Lost Ark was released")
 ```
 
-![png](output_80_0.png)
+![png](output_84_0.png)
 
 
 While on this topic...
@@ -1212,10 +1261,10 @@ While on this topic...
 
 ```python
 plot_name_event(name="Harrison",  year='1981', start='1975', end='2015', 
-                event_type="The movie Raiders Of The Lost Ark was released")
+                event="The movie Raiders Of The Lost Ark was released")
 ```
 
-![png](output_82_0.png)
+![png](output_86_0.png)
 
 
 In a different genre we also have:
@@ -1223,25 +1272,43 @@ In a different genre we also have:
 
 ```python
 plot_name_event(name="Clint",  year='1966', start='1950', end='1981', 
-                event_type="The movie The Good, the Bad, and the Ugly was released")
+                event="The movie The Good, the Bad, and the Ugly was released")
 ```
 
-![png](output_84_0.png)
+![png](output_88_0.png)
 
 
 We've focused on movies, but of course, popular culture's influence on baby names isn't limited to movies or television.
 
 Songs or singers can also contribute to the popularity of a given name.
 
-Here's one example.
+Here are a couple of examples.
+
+
+```python
+plot_name_event(name="Elvis",  year='1955', start='1945', end='1991', 
+                event="Radios start playing Elvis Presley's songs")
+```
+
+![png](output_90_0.png)
+
 
 
 ```python
 plot_name_event(name="Michelle",  year='1965', start='1960', end='1981', 
-                event_type="The Beatle song Michelle was released")
+                event='The song Michelle is released by The Beatles')
 ```
 
-![png](output_86_0.png)
+![png](output_91_0.png)
+
+
+
+```python
+plot_name_event(name="Jermaine",  year='1970', start='1960', end='1990', 
+                event="The Jackson 5 top the charts")
+```
+
+![png](output_92_0.png)
 
 
 ... And a couple of more recent ones
@@ -1249,19 +1316,10 @@ plot_name_event(name="Michelle",  year='1965', start='1960', end='1981',
 
 ```python
 plot_name_event(name="Beyonce",  year='1998', start='1995', end='2015', 
-                event_type="The group Destiny's Child released its debut album")
+                event="The group Destiny's Child released its debut album")
 ```
 
-![png](output_88_0.png)
-
-
-
-```python
-plot_name_event(name="Adele",  year='2006', start='2000', end='2015', 
-                event_type="British pop singer Adele made her debut")
-```
-
-![png](output_89_0.png)
+![png](output_94_0.png)
 
 
 Same with sport.
@@ -1269,10 +1327,10 @@ Same with sport.
 
 ```python
 plot_name_event(name="Kobe",  year='1996', start='1988', end='2015',
-                event_type="NBA player Kobe Bryant made his debut in the league")
+                event="NBA player Kobe Bryant made his debut in the league")
 ```
 
-![png](output_91_0.png)
+![png](output_96_0.png)
 
 
 I'll stop here, but I'm sure many other interesting patterns can be found in this data set...
