@@ -744,10 +744,10 @@ __For more complex patterns we can use _named_ capture groups.__
 
 
 ```python
-credit_card_details = re.compile(r'(?P<CardType>Visa|MasterCard).*'
-                                 r'(?P<CardNumber>\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4})[-\s]?'
-                                 r'(?P<CCV>\d{3})\s+'
-                                 r'(?P<Expiry>\d{2}[- /]{1}\d{4})')
+credit_card_details = re.compile('(?P<CardType>Visa|MasterCard).*'
+                                 '(?P<CardNumber>\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4})[-\s]?'
+                                 '(?P<CCV>\d{3})\s+'
+                                 '(?P<Expiry>\d{2}[- /]{1}\d{4})')
 ```
 
 ```python
@@ -821,7 +821,7 @@ Let's now write a regular expression <code>email</code> that will extract the em
 
 
 ```python
-email = re.compile(r'(?P<Login>[\w.-]+)@(?P<ISP>[\w.-]+)')
+email = re.compile(r'(?P<Login>\S+)@(?P<ISP>\S+)')
 
 pd.DataFrame([email.search(line).groupdict() for line in  messy_data.strip().splitlines()])
 ```
