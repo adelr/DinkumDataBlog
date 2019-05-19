@@ -1,3 +1,6 @@
 [submodule "adelr.github.io"]
 	path = adelr.github.io
 	url = git@github.com:adelr/adelr.github.io.git
+[submodule "themes/beautifulhugo"]
+	path = themes/beautifulhugo
+	url = https://github.com/halogenica/beautifulhugo.git

@@ -3,6 +3,7 @@ DefaultContentLanguage = "en"
 # DefaultContentLanguage = "py"
 title = "Dinkum Data Blog"
 theme = "beautifulhugo"
+# theme = "hugo-nuo"
 metaDataFormat = "yaml"
 pygmentsStyle = "trac"
 pygmentsUseClasses = true
