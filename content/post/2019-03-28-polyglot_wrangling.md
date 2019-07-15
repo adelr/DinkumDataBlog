@@ -5594,7 +5594,7 @@ df
 
 
 #### ▶ R
-This the same approach as in Python.
+This is essentially the same approach as in Python.
 
 
 ```r
